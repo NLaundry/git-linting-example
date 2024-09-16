@@ -3,7 +3,7 @@ import "./App.css";
 
 function bad_promise() {
   Promise.reject("something bad happened");
-  //here's a comment
+
   Promise.reject(5);
 
   Promise.reject();
