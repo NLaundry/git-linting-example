@@ -1,21 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
 
-  function bad_promise() {
-    Promise.reject("something bad happened");
+function bad_promise() {
+  Promise.reject("something bad happened");
+  //here's a comment
+  Promise.reject(5);
 
-Promise.reject(5);
+  Promise.reject();
 
-Promise.reject();
+  new Promise(function (resolve, reject) {
+    reject("something bad happened");
+  });
 
-new Promise(function(resolve, reject) {
-  reject("something bad happened");
-});
-
-new Promise(function(resolve, reject) {
-  reject();
-});
-  }
+  new Promise(function (resolve, reject) {
+    reject();
+  });
+}
 
 function App() {
   return (
