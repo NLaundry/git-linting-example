@@ -1,5 +1,5 @@
 ---
-name: Lint
+name: Lint-and-fix
 
 on: # yamllint disable-line rule:truthy
   push: null
