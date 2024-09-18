@@ -1,10 +1,10 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-            function bad_promise() {
-Promise.reject("something bad happened");
+function bad_promise() {
+  Promise.reject("something bad happened");
 
-      Promise.reject(5);
+  Promise.reject(5);
 
           Promise.reject();
 
