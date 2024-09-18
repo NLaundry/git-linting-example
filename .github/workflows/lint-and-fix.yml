@@ -8,7 +8,6 @@ jobs:
     permissions:
       # To write linting fixes
       contents: write
-      # To write Super-linter status checks
       statuses: write
     steps:
       - uses: actions/checkout@v4
