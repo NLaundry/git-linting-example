@@ -6,7 +6,7 @@ Promise.reject("something bad happened");
 
       Promise.reject(5);
 
-  Promise.reject();
+          Promise.reject();
 
   new Promise(function (resolve, reject) {
     reject("something bad happened");
