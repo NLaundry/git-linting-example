@@ -10,6 +10,7 @@ jobs:
       # To write linting fixes
       contents: write
       statuses: write
+      workflows: write
     steps:
       - uses: actions/checkout@v4
         with:
