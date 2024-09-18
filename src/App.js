@@ -1,7 +1,7 @@
 import logo from "./logo.svg";
 import "./App.css";
 
-		function bad_promise() {
+	function bad_promise() {
 Promise.reject("something bad happened");
 
 Promise.reject(5);
