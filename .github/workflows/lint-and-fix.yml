@@ -11,12 +11,12 @@ jobs:
       # To write Super-linter status checks
       statuses: write
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v4
         with:
-          node-version: "16.x"
+          node-version: "20.x"
       - run: npm ci
       - run: npm run format
       - name: Commit changes
