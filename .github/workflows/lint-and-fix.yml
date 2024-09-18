@@ -1,45 +1,26 @@
----
-name: Lint
-
-on: # yamllint disable-line rule:truthy
-  push: null
-  pull_request: null
-
-permissions:
-  contents: read
-
+name: Format
+on:
+  pull_request:
+    branches: [main]
 jobs:
-  fix-lint-issues:
+  format:
+    runs-on: ubuntu-latest
     permissions:
       # To write linting fixes
       contents: write
       # To write Super-linter status checks
       statuses: write
-    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
-      - name: Super-Linter
-        uses: super-linter/super-linter@v7.1.0 # x-release-please-version
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # Set your fix mode variables to true
-          FIX_JAVASCRIPT_PRETTIER: true
-          FIX_JSX_PRETTIER: true
-          # To reuse the same Super-linter configuration that you use in the
-          # lint job without duplicating it, see
-          # https://github.com/super-linter/super-linter/blob/main/docs/run-linter-locally.md#share-environment-variables-between-environments
-      - name: Commit and push linting fixes
-        # Run only on:
-        # - Pull requests
-        # - Not on the default branch
-        if: >
-          github.event_name == 'pull_request' &&
-          github.ref_name != github.event.repository.default_branch
-        uses: stefanzweifel/git-auto-commit-action@v5
+          ref: ${{ github.head_ref }}
+      - uses: actions/setup-node@v4
         with:
-          branch: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref }}
-          commit_message: "chore: fix linting issues"
-          commit_user_name: super-linter
-          commit_user_email: super-linter@super-linter.dev
+          node-version: "20.x"
+      - run: npm ci
+      - run: npm run format
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Apply formatting changes
+          branch: ${{ github.head_ref }}
